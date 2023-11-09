@@ -35,10 +35,7 @@ app.use('/resource', resourceRouter);
 
 const connectionString = process.env.MONGO_CON;
 const mongoose = require('mongoose');
-
-async function connectDB(){
-  await mongoose.connect(connectionString);
-}
+mongoose.connect(connectionString);
 
 
 // catch 404 and forward to error handler
@@ -69,10 +66,10 @@ console.log("Connection to DB succeeded")});
 async function recreateDB(){
   // Delete everything
   //await Book.deleteMany();
-  await Book.deleteMany({}).maxTimeMS(10000);
+  await Book.deleteMany({}).maxTimeMS(30000);
   let instance1 = new 
-  Book({Book_name:"Audi", Book_year:'2023', 
-  Book_price:10000});
+  Book({Book_name:"Jane Eyre", Book_year:'2011', 
+  Book_price:100});
   await instance1.save();
   //instance1.save( function(err,doc) {
   //if(err) return console.error(err);
@@ -80,8 +77,8 @@ async function recreateDB(){
   //});
  
   let instance2 = new 
-  Book({Book_name:"Benz", Book_year:'2024', 
-  Book_price:20000});
+  Book({Book_name:"Matilda", Book_year:'2014', 
+  Book_price:200});
   await instance2.save();
   //instance1.save( function(err,doc) {
   //if(err) return console.error(err);
@@ -89,8 +86,8 @@ async function recreateDB(){
   //});
  
   let instance3 = new 
-  Book({Book_name:"Jeep", Book_year:'2025', 
-  Book_price:30000});
+  Book({Book_name:"Emma", Book_year:'2015', 
+  Book_price:300});
   await instance3.save();
   //instance1.save( function(err,doc) {
   //if(err) return console.error(err);
