@@ -1,18 +1,22 @@
 extends layout
 block content
-  h1= title
-  - let Bookid = toShow._id
-  - let Book_name = toShow.Book_name
-  - let Book_year = toShow.Book_year
-  - let Book_price = toShow.Book_price
-  table
-    tr
-      th(class='BookAttr') Book ID
-      th(class='BookAttr') Book Name
-      th(class='BookAttr') Book Year
-      th(class='BookAttr') Book Price
-    tr
-      td(class='BookAttr') #{toShow._id}
-      td(class='BookAttr') #{toShow.Book_name}
-      td(class='BookAttr') #{toShow.Book_year}
-      td(class='BookAttr') #{toShow.Book_price}
+  - if (toShow != null)
+    h1= title
+    - let Bookid = toShow._id
+    - let Book_name = toShow.Book_name
+    - let Book_year = toShow.Book_year
+    - let Book_price = toShow.Book_price
+    table
+      tr
+        th(class='BookAttr') Book ID
+        th(class='BookAttr') Book Name
+        th(class='BookAttr') Book Year
+        th(class='BookAttr') Book Price
+      tr
+        td(class='BookAttr') #{toShow._id}
+        td(class='BookAttr') #{toShow.Book_name}
+        td(class='BookAttr') #{toShow.Book_year}
+        td(class='BookAttr') #{toShow.Book_price}
+  - else 
+    script.
+      alert('Error: No book found with the provided ID in Database.')

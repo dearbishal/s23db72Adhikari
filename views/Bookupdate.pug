@@ -1,39 +1,43 @@
 extends layout
 block content
-  h1= title
-  - let Bookid = toShow._id
-  - let Book_name = toShow.Book_name
-  - let Book_year = toShow.Book_year
-  - let Book_price = toShow.Book_price
-  div.row(class='mb-2')
-    div.mr-1 ID is
-      div #{Bookid}
-    - let actionid = "/resource/Book/" + Bookid
-    form(id='BookForm', action= actionid, method="PUT")
-      div.form-group
-        label.BookAttr(for='Book_name') Book Name
-        input#Book_name(type='text', name='Book_name', value= Book_name )
-      div.form-group
-        label.BookAttr(for='Book_year') Book Year
-        input#Book_year(type='text', name='Book_year', value= Book_year )
-      div.form-group
-        label.BookAttr(for='Book_price') Book Price
-        input#Book_price(type='number', name='Book_price', value= Book_price )
-        input(type="submit")
-    script.
-      document.forms['BookForm'].addEventListener('submit', (event) => {
-        event.preventDefault();
-        // TODO do something here to show user that form is being submitted
-        fetch(event.target.action, {
-          method: 'PUT',
-          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-        }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-          alert("Update succeeded");
-          // TODO handle body
-        }).catch((error) => {
-          // TODO handle error
-          alert("Update failed " + error);
+  - if (toShow != null)
+    h1= title
+    - let Bookid = toShow._id
+    - let Book_name = toShow.Book_name
+    - let Book_year = toShow.Book_year
+    - let Book_price = toShow.Book_price
+    div.row(class='mb-2')
+      div.mr-1 ID is
+        div #{Bookid}
+      - let actionid = "/resource/Book/" + Bookid
+      form(id='BookForm', action=actionid, method="PUT")
+        div.form-group
+          label.BookAttr(for='Book_name') Book Name
+          input#Book_name(type='text', name='Book_name', value=Book_name )
+        div.form-group
+          label.BookAttr(for='Book_year') Book Year
+          input#Book_year(type='text', name='Book_year', value=Book_year )
+        div.form-group
+          label.BookAttr(for='Book_price') Book Price
+          input#Book_price(type='number', name='Book_price', value=Book_price )
+          input(type="submit")
+      script.
+        document.forms['BookForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show user that the form is being submitted
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Update succeeded");
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error);
+          });
         });
-      });
+  - else 
+    script.
+      alert('Error: No book found with the provided ID in Database.')
