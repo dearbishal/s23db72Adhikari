@@ -5,16 +5,14 @@ block content
   - let Book_name = toShow.Book_name
   - let Book_year = toShow.Book_year
   - let Book_price = toShow.Book_price
-  div
-    div.row
-      div(class='BookAttr mr-3') Book ID is:
-        div #{Bookid}
-    div.row
-      div(class='BookAttr mr-3') Book Name is:
-        div #{Book_name}
-    div.row
-      div(class='BookAttr mr-3') Book Year is:
-        div #{Book_year}
-    div.row
-      div(class='BookAttr mr-3') Book Price is:
-        div #{Book_price}
+  table
+    tr
+      th(class='BookAttr') Book ID
+      th(class='BookAttr') Book Name
+      th(class='BookAttr') Book Year
+      th(class='BookAttr') Book Price
+    tr
+      td(class='BookAttr') #{toShow._id}
+      td(class='BookAttr') #{toShow.Book_name}
+      td(class='BookAttr') #{toShow.Book_year}
+      td(class='BookAttr') #{toShow.Book_price}
