@@ -2,13 +2,19 @@ extends layout
 
 block content
   h1= title
-   - var Book=[{Book_name:"Jane Eyre",Book_year:"2011",Book_price:200},{Book_name:"Barve New World",Book_year:"2012",Book_price:300},{Book_name:"Matilda",Book_year:"2018",Book_price:100}]
-  div(class="container-fluid")
-  div(class="row")
-   each f,index  in Book
-    div(class="col-sm-2" onclick =`buy(${index})`) #{f.Book_name}, #{f.Book_year}, #{f.Book_price}
+  - let result = results;
+  - var Book=[{Book_name:"Jane Eyre",Book_year:"2011",Book_price:200},{Book_name:"Brave New World",Book_year:"2012",Book_price:300},{Book_name:"Matilda",Book_year:"2018",Book_price:100}]
+  div(class="container-resultluid")
+    div(class="row m-1")
+      each result, index in results
+         - let destination = `/Book/update?id=${result._id}`
+            div(class="col-sm-2" onclick =`buy(${index})`) #{result.Book_name}, #{result.Book_year}, #{result.Book_price}
+            button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+
     script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        } 
+        function buy(a) {
+        alert(`You purchased Item ${a+1}`);
+        }
+        function dispatch(path) {
+        window.location.href = path;
+        }
