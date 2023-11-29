@@ -11,11 +11,12 @@ block content
          - let destination = `/Book/update?id=${result._id}`
          - let destination2= `/Book/create`
          - let destination3= `/Book/detail?id=${result._id}`
-            div(class="col-sm-2" onclick =`buy(${index})`) #{result.Book_name}, #{result.Book_year}, #{result.Book_price}
-            button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
-            button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination1}')`) Delete
-            button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination2}')`) Create 
-            button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination3}')`) Details
+            div(class="row-sm-2" onclick =`buy(${index})`) #{result.Book_name}, #{result.Book_year}, #{result.Book_price}
+            div(class="row-sm-2", class="m-1")
+              button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+              button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination1}')`) Delete
+              button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination2}')`) Create 
+              button.btn( class="btn-primary ml-1", onclick=`dispatch('${destination3}')`) Details
 
     script.
         function buy(a) {

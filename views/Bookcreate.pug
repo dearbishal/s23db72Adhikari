@@ -1,5 +1,6 @@
 extends layout
 block content
+- if (toShow != null)
   h1= title
   form(id='BookForm', action="/resource/Book", method="POST")
     div.form-group
@@ -29,3 +30,6 @@ block content
         alert("Save failed " + error)
       });
     });
+- else 
+  script.
+    alert('Error: No book can be created in Database.')
