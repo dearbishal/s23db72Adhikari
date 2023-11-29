@@ -13,7 +13,7 @@ const BookSchema = mongoose.Schema({
     Book_price: {
         type: Number,
         required: true,
-        min: 0,
+        min: 10,
         max: 50000
     }
 });

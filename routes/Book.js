@@ -2,6 +2,16 @@ var express = require('express');
 const Book_controlers= require('../controllers/Book');
 var router = express.Router();
 
+// A little function to check if we have an authorized user and continue on
+//or
+// redirect to login.
+const secured = (req, res, next) => {
+    if (req.user){
+    return next();
+    }
+    res.redirect("/login");
+    }
+
 /* GET detail Book page */
 router.get('/detail', Book_controlers.Book_view_one_Page);
 
@@ -9,7 +19,7 @@ router.get('/detail', Book_controlers.Book_view_one_Page);
 router.get('/create', Book_controlers.Book_create_Page);
 
 /* GET create update page */
-router.get('/update', Book_controlers.Book_update_Page);
+router.get('/update',secured, Book_controlers.Book_update_Page);
 
 /* GET delete costume page */
 router.get('/delete', Book_controlers.Book_delete_Page);
